@@ -27,7 +27,45 @@
 
 #define MENU_WIDTH 40
 
+/**
+ * Imprime uma linha de divisão
+ * @param width  a largura da linha,
+ */
+void printLine(int width) {
+    int i;
+    putchar('+');
+    for(i = 1; i < (width -1); i++) {
+        putchar('-');
+    }
+    putchar('+');
+    putchar('\n');
+}
 
+/**
+ * Retorna o valor inputado, se válido. Se não, retorna 0 e força a voltar uma
+ * iteração na estrutura de controle
+ * @param  i   índice no iterator
+ * @param  val valor entrado pelo usuário
+ * @return     valor do usuário, se válido. Se não, 0
+ */
+int validateInput(int *i, int val) {
+    return val;
+}
+
+/**
+ * Pega um número do usuário
+ * @param  i índice do iterator
+ * @return   valor recebido
+ */
+int getNum(int *i) {
+    int b;
+
+    printf("Digite o número para a pos %d do vetor:\n", *i);
+    scanf("%d", &b);
+    __fpurge(stdin);
+
+    return b;
+}
 
 /**
  * Pega um caractere da stdin e limpa o resto
@@ -37,7 +75,6 @@ char getCharWipeInputStream() {
     char c = ' ';
 
     c = fgetc(stdin);
-
     __fpurge(stdin);
 
     return c;
@@ -57,23 +94,19 @@ void stopProgramForEnter() {
  * @return       se foi válido a entrada de dados
  */
 int dataInput(int *vetor) {
-    puts("Data input");
-
-    stopProgramForEnter();
-}
-
-/**
- * Imprime uma linha de divisão
- * @param width  a largura da linha,
- */
-void printLine(int width) {
-    int i;
-    putchar('+');
-    for(i = 1; i < (width -1); i++) {
-        putchar('-');
-    }
-    putchar('+');
     putchar('\n');
+    printLine(MENU_WIDTH);
+    printf("| %-36s |\n", "Digite os números para popular o vetor");
+    printLine(MENU_WIDTH);
+    putchar('\n');
+
+    int i;
+
+    for(i = 0; i < TAM; i++)
+        *(vetor + i) = validateInput(&i, getNum(&i));
+
+    putchar('\n');
+    stopProgramForEnter();
 }
 
 /**
