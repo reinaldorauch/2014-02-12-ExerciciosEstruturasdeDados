@@ -4,16 +4,56 @@
 		"selected_items":
 		[
 			[
+				"get",
+				"getNumToSearch"
+			],
+			[
+				"tme",
+				"temp"
+			],
+			[
+				"verif",
+				"verifyRepetitionFor"
+			],
+			[
+				"SER",
+				"SEARCH_BIGGER"
+			],
+			[
+				"mai",
+				"maior"
+			],
+			[
+				"or",
+				"origValue"
+			],
+			[
+				"ver",
+				"verifyIntegerWidth"
+			],
+			[
+				"prin",
+				"printf	printf …"
+			],
+			[
+				"ex",
+				"programExit"
+			],
+			[
+				"print",
+				"printf	printf …"
+			],
+			[
+				"No",
+				"NO_ENDER"
+			],
+			[
 				"vali",
 				"validateCharOption"
 			],
 			[
 				"menu",
 				"MENU_WIDTH"
-			],
-			[
-				"print",
-				"printLine"
 			],
 			[
 				"progra",
@@ -66,10 +106,6 @@
 			[
 				"Arquivo_",
 				"ARQUIVO_INVALID"
-			],
-			[
-				"get",
-				"getProperty  (function)"
 			],
 			[
 				"Ref",
@@ -478,42 +514,6 @@
 			[
 				"W",
 				"WordWrap  (variable)"
-			],
-			[
-				"From",
-				"FromName  (variable)"
-			],
-			[
-				"SMTPSe",
-				"SMTPSecure  (variable)"
-			],
-			[
-				"P",
-				"PHPMailer  (class)"
-			],
-			[
-				"w",
-				"worksheet"
-			],
-			[
-				"_SER",
-				"_SERVER  (variable)"
-			],
-			[
-				"fges",
-				"fgets"
-			],
-			[
-				"date_parse",
-				"date_parse_from_format"
-			],
-			[
-				"setC",
-				"setCellValue  (function)"
-			],
-			[
-				"ec",
-				"excel  (variable)"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "/media/arquivo/Códigos/UEPG/Estruturas de Dados/2014-02-14/c/exer01.c",
 			"settings":
 			{
-				"buffer_size": 5307,
+				"buffer_size": 11774,
 				"line_ending": "Unix"
 			}
 		}
@@ -1118,6 +1118,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"for (int",
+			"printf",
+			"if((i + 1) == TAM)",
+			"for(i = 0; i < TAM; i++) {",
+			"printArray",
+			"i",
+			"');\n",
+			"(((i + 1) == TAM) ? WITH_ENDER : NO_ENDER)",
+			"NO_ENDER",
 			"printLine",
 			"ender",
 			"%36s",
@@ -1236,16 +1245,7 @@
 			"this->getClient",
 			"this",
 			"Name",
-			"Client",
-			"this",
-			"Roles",
-			"user",
-			"User",
-			"user",
-			"User",
-			"user",
-			"Password",
-			"Email"
+			"Client"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1279,15 +1279,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5307,
+						"buffer_size": 11774,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								833,
-								833
+								2310,
+								2310
 							]
 						],
 						"settings":
@@ -1400,11 +1400,11 @@
 								80
 							],
 							"sublime_auto_complete": true,
-							"syntax": "Packages/C++/C++.tmLanguage",
+							"syntax": "Packages/C++/C.tmLanguage",
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 229.0,
+						"translation.y": 1178.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1985,7 +1985,7 @@
 		[
 			[
 				"",
-				"~/Documentos/bestuse.sublime-project"
+				"~/Documentos/bestuse-novo.sublime-project"
 			]
 		],
 		"width": 380.0
