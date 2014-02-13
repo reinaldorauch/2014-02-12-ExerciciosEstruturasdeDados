@@ -30,13 +30,8 @@
 #define NO_ENDER 0
 #define WITH_ENDER 1
 
-/**
- * Sai do programa
- */
-void programExit() {
-    printf("Saindo... \n");
-    exit(0);
-}
+#define SEARCH_BIGGER 1
+#define SEARCH_LOWER 0
 
 /**
  * Pega um caractere da stdin e limpa o resto
@@ -57,6 +52,93 @@ char getCharWipeInputStream() {
 void stopProgramForEnter() {
     puts("\nPressione enter para continuar...");
     getCharWipeInputStream();
+}
+
+/**
+ * Retorna um número para ser procurado no vetor
+ * @return O numero inputado
+ */
+int getNumToSearch() {
+    int d;
+    puts("Digite um número a ser procurado no array");
+    scanf("%d", &d);
+    __fpurge(stdin);
+
+    return d;
+}
+
+/**
+ * Verifica as repetições para determinado índice
+ * @param vetor Haystack
+ * @param i     Needle
+ */
+void verifyRepetitionFor(int *vetor, int *i) {
+    int j, k, count = 0;
+    int *indexArray = (int*) malloc(sizeof(int)),
+        *temp = NULL;
+
+    for (j = 0; j < TAM; j++)
+        if(*i == *(vetor + j))   {
+            *(indexArray + count++) = j;
+            temp = (int*) realloc(indexArray, (count * sizeof(int)));
+            if(temp)
+                indexArray = temp;
+        }
+
+    if(count > 0) {
+        printf("O valor %d aparece %d vezes nos índices: \n", *i, count);
+
+        for (k = 0; k < count; k++)
+            if((k + 1) == count)
+                printf("nº %d \n\n", *(indexArray + k));
+            else
+                printf("nº %d, ", *(indexArray + k));
+    } else
+        printf("O valor %d não aparece nenhuma vez\n\n", *i);
+
+    free(indexArray);
+
+}
+
+/**
+ * Verifica as repetições para cada elemento do vetor
+ * @param vetor o vetor que será utilizado para as verificações
+ */
+void countSame(int * vetor) {
+    int i = getNumToSearch();
+
+    verifyRepetitionFor(vetor, &i);
+
+}
+
+/**
+ * Procura o maior ou o menor dependendo de maior
+ * @param maior Verifica se é para procurar o maior ou o menor
+ */
+void findBiggerOrLower(int *vetor, int maior) {
+    int *border = vetor, i;
+
+    for (i = 1; i < TAM; i++)
+    {
+        if(maior && (*(vetor + i) > *border))
+            border = (vetor + i);
+
+        if(!maior && (*(vetor + i) < *border))
+            border = (vetor + i);
+    }
+
+    if(maior)
+        printf("\nO maior número é %d\n", *border);
+    else
+        printf("\nO menor número é %d\n", *border);
+}
+
+/**
+ * Sai do programa
+ */
+void programExit() {
+    printf("Saindo... \n");
+    exit(0);
 }
 
 /**
@@ -81,10 +163,8 @@ void printLine(int width, int ender) {
     for(i = 1; i < (width -1); i++) {
         putchar('-');
     }
-    if(ender) {
-        putchar('+');
-        putchar('\n');
-    }
+    if(ender)
+        puts("+");
 }
 
 /**
@@ -95,6 +175,7 @@ void printLine(int width, int ender) {
 void verifyIntegerWidth(int *width, int *value) {
     if((*value) < 0) {
         (*value) *= -1;
+        (*width)++;
         verifyIntegerWidth(width, value);
     } else if((*value) > 10) {
         (*width)++;
@@ -144,10 +225,10 @@ void printIndexLine(int *v, int *i, int ender) {
 }
 
 /**
- * Imprime o vetor horizontalmente na tela
+ * Imprime o vetor horizontalmente na tela, na ordem natural
  * @param vetor ponteiro para o vetor-destino
  */
-void printArray(int *vetor) {
+void printArrayStraight(int *vetor) {
     int i, we = NO_ENDER;
 
     putchar('\n');
@@ -186,6 +267,55 @@ void printArray(int *vetor) {
 
     for(i = 0; i < TAM; i++) {
         if((i + 1) == TAM)
+            we = WITH_ENDER;
+        printLineWithOffset(vetor + i, we);
+    }
+    putchar('\n');
+}
+
+/**
+ * Imprime o vetor horizontalmente na tela, na ordem reversa
+ * @param vetor ponteiro para o vetor-destino
+ */
+void printArrayReverse(int *vetor) {
+    int i, we = NO_ENDER;
+
+    putchar('\n');
+    for(i = (TAM - 1); i >= 0; i--) {
+        if(i == 0)
+            we = WITH_ENDER;
+        printLineWithOffset(vetor + i, we);
+    }
+
+    we = NO_ENDER;
+
+    for(i = (TAM - 1); i >= 0; i--) {
+        if(i == 0)
+            we = WITH_ENDER;
+        printIndexLine(vetor + i, &i, we);
+    }
+
+
+    we = NO_ENDER;
+
+    for(i = (TAM - 1); i >= 0; i--) {
+        if(i == 0)
+            we = WITH_ENDER;
+        printLineWithOffset(vetor + i, we);
+    }
+
+    we = NO_ENDER;
+
+    for(i = (TAM - 1); i >= 0; i--) {
+        if(i == 0)
+            we = WITH_ENDER;
+        printField(vetor + i, we);
+    }
+
+    we = NO_ENDER;
+
+    for(i = (TAM - 1); i >= 0; i--) {
+        if(i == 0)
             we = WITH_ENDER;
         printLineWithOffset(vetor + i, we);
     }
@@ -315,7 +445,7 @@ void run(int *vetor) {
             // Listagem direta
             case 'D':
                 if(hadInput)
-                    printArray(vetor);
+                    printArrayStraight(vetor);
                 else
                     puts("\nNão houve entrada de dados. Insira-os e tente novamente\n");
                 stopProgramForEnter();
@@ -323,12 +453,42 @@ void run(int *vetor) {
 
             // Listagem Inversa
             case 'I':
+                if(hadInput)
+                    printArrayReverse(vetor);
+                else
+                    puts("\nNão houve entrada de dados. Insira-os e tente novamente\n");
+                stopProgramForEnter();
+                break;
 
             // Procura o maior elemento
             case 'M':
+                if(hadInput)
+                    findBiggerOrLower(vetor, SEARCH_BIGGER);
+                else
+                    puts("\nNão houve entrada de dados. Insira-os e tente novamente\n");
+                stopProgramForEnter();
+                break;
 
             // Procura o menor elemento
             case 'N':
+                if(hadInput)
+                    findBiggerOrLower(vetor, SEARCH_LOWER);
+                else
+                    puts("\nNão houve entrada de dados. Insira-os e tente novamente\n");
+                stopProgramForEnter();
+                break;
+
+            // Contagem de repetições
+            case 'C':
+                if(hadInput)
+                    countSame(vetor);
+                else
+                    puts("\nNão houve entrada de dados. Insira-os e tente novamente\n");
+                stopProgramForEnter();
+                break;
+
+            // Média entre os elementos do vetor
+            case 'A':
 
             // Sai do programa
             case 'S':
