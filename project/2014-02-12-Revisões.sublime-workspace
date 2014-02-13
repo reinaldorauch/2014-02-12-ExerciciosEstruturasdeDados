@@ -4,6 +4,58 @@
 		"selected_items":
 		[
 			[
+				"get",
+				"getNumToSearch"
+			],
+			[
+				"tme",
+				"temp"
+			],
+			[
+				"verif",
+				"verifyRepetitionFor"
+			],
+			[
+				"SER",
+				"SEARCH_BIGGER"
+			],
+			[
+				"mai",
+				"maior"
+			],
+			[
+				"or",
+				"origValue"
+			],
+			[
+				"ver",
+				"verifyIntegerWidth"
+			],
+			[
+				"prin",
+				"printf	printf …"
+			],
+			[
+				"ex",
+				"programExit"
+			],
+			[
+				"print",
+				"printf	printf …"
+			],
+			[
+				"No",
+				"NO_ENDER"
+			],
+			[
+				"vali",
+				"validateCharOption"
+			],
+			[
+				"menu",
+				"MENU_WIDTH"
+			],
+			[
 				"progra",
 				"programExit"
 			],
@@ -54,10 +106,6 @@
 			[
 				"Arquivo_",
 				"ARQUIVO_INVALID"
-			],
-			[
-				"get",
-				"getProperty  (function)"
 			],
 			[
 				"Ref",
@@ -234,10 +282,6 @@
 			[
 				"row",
 				"rowCount  (variable)"
-			],
-			[
-				"vali",
-				"validos  (variable)"
 			],
 			[
 				"PHP",
@@ -470,50 +514,6 @@
 			[
 				"W",
 				"WordWrap  (variable)"
-			],
-			[
-				"From",
-				"FromName  (variable)"
-			],
-			[
-				"SMTPSe",
-				"SMTPSecure  (variable)"
-			],
-			[
-				"P",
-				"PHPMailer  (class)"
-			],
-			[
-				"w",
-				"worksheet"
-			],
-			[
-				"_SER",
-				"_SERVER  (variable)"
-			],
-			[
-				"fges",
-				"fgets"
-			],
-			[
-				"date_parse",
-				"date_parse_from_format"
-			],
-			[
-				"setC",
-				"setCellValue  (function)"
-			],
-			[
-				"ec",
-				"excel  (variable)"
-			],
-			[
-				"re",
-				"regex_first_line  (variable)"
-			],
-			[
-				"regex",
-				"regex_tels"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "/media/arquivo/Códigos/UEPG/Estruturas de Dados/2014-02-14/c/exer01.c",
 			"settings":
 			{
-				"buffer_size": 2828,
+				"buffer_size": 11774,
 				"line_ending": "Unix"
 			}
 		}
@@ -912,6 +912,7 @@
 	},
 	"file_history":
 	[
+		"/media/arquivo/Códigos/UEPG/Estruturas de Dados/2014-02-14/.gitignore",
 		"/media/arquivo/Códigos/UEPG/Estruturas de Dados/2014-02-14/exer01.c",
 		"/home/reinaldo/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
 		"/home/reinaldo/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
@@ -1038,12 +1039,11 @@
 		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/tests/Doctrine/ODM/MongoDB/Tests/Events/LifecycleCallbacksTest.php",
 		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/lib/Doctrine/ODM/MongoDB/Tools/Console/Command/GenerateDocumentsCommand.php",
 		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/lib/Doctrine/ODM/MongoDB/Tools/Console/Command/GenerateHydratorsCommand.php",
-		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/lib/Doctrine/ODM/MongoDB/Tools/Console/Command/GenerateProxiesCommand.php",
-		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/lib/Doctrine/ODM/MongoDB/Tools/Console/Command/GenerateRepositoriesCommand.php"
+		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/lib/Doctrine/ODM/MongoDB/Tools/Console/Command/GenerateProxiesCommand.php"
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -1118,6 +1118,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"for (int",
+			"printf",
+			"if((i + 1) == TAM)",
+			"for(i = 0; i < TAM; i++) {",
+			"printArray",
+			"i",
+			"');\n",
+			"(((i + 1) == TAM) ? WITH_ENDER : NO_ENDER)",
+			"NO_ENDER",
+			"printLine",
+			"ender",
+			"%36s",
+			"s |\"",
+			"i",
+			"vetor",
+			"%36d",
 			"validateChar",
 			"http_proxy",
 			"/path/to/file/on/server",
@@ -1229,23 +1245,7 @@
 			"this->getClient",
 			"this",
 			"Name",
-			"Client",
-			"this",
-			"Roles",
-			"user",
-			"User",
-			"user",
-			"User",
-			"user",
-			"Password",
-			"Email",
-			"getUpdated",
-			"getCreated",
-			"this",
-			"config",
-			"condif",
-			"confi",
-			"';"
+			"Client"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1279,15 +1279,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2828,
+						"buffer_size": 11774,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								857,
-								857
+								2310,
+								2310
 							]
 						],
 						"settings":
@@ -1395,12 +1395,16 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"rulers":
+							[
+								80
+							],
 							"sublime_auto_complete": true,
-							"syntax": "Packages/C++/C++.tmLanguage",
+							"syntax": "Packages/C++/C.tmLanguage",
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 153.0,
+						"translation.y": 1178.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1981,7 +1985,7 @@
 		[
 			[
 				"",
-				"~/Documentos/bestuse.sublime-project"
+				"~/Documentos/bestuse-novo.sublime-project"
 			]
 		],
 		"width": 380.0
