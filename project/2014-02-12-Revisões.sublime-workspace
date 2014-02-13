@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"vali",
+				"validateCharOption"
+			],
+			[
+				"menu",
+				"MENU_WIDTH"
+			],
+			[
+				"print",
+				"printLine"
+			],
+			[
 				"progra",
 				"programExit"
 			],
@@ -234,10 +246,6 @@
 			[
 				"row",
 				"rowCount  (variable)"
-			],
-			[
-				"vali",
-				"validos  (variable)"
 			],
 			[
 				"PHP",
@@ -506,14 +514,6 @@
 			[
 				"ec",
 				"excel  (variable)"
-			],
-			[
-				"re",
-				"regex_first_line  (variable)"
-			],
-			[
-				"regex",
-				"regex_tels"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "/media/arquivo/Códigos/UEPG/Estruturas de Dados/2014-02-14/c/exer01.c",
 			"settings":
 			{
-				"buffer_size": 2828,
+				"buffer_size": 5307,
 				"line_ending": "Unix"
 			}
 		}
@@ -912,6 +912,7 @@
 	},
 	"file_history":
 	[
+		"/media/arquivo/Códigos/UEPG/Estruturas de Dados/2014-02-14/.gitignore",
 		"/media/arquivo/Códigos/UEPG/Estruturas de Dados/2014-02-14/exer01.c",
 		"/home/reinaldo/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
 		"/home/reinaldo/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
@@ -1038,12 +1039,11 @@
 		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/tests/Doctrine/ODM/MongoDB/Tests/Events/LifecycleCallbacksTest.php",
 		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/lib/Doctrine/ODM/MongoDB/Tools/Console/Command/GenerateDocumentsCommand.php",
 		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/lib/Doctrine/ODM/MongoDB/Tools/Console/Command/GenerateHydratorsCommand.php",
-		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/lib/Doctrine/ODM/MongoDB/Tools/Console/Command/GenerateProxiesCommand.php",
-		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/lib/Doctrine/ODM/MongoDB/Tools/Console/Command/GenerateRepositoriesCommand.php"
+		"/home/reinaldo/trabalhos/bestuse-novo/vendor/doctrine/mongodb-odm/lib/Doctrine/ODM/MongoDB/Tools/Console/Command/GenerateProxiesCommand.php"
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -1118,6 +1118,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"printLine",
+			"ender",
+			"%36s",
+			"s |\"",
+			"i",
+			"vetor",
+			"%36d",
 			"validateChar",
 			"http_proxy",
 			"/path/to/file/on/server",
@@ -1238,14 +1245,7 @@
 			"User",
 			"user",
 			"Password",
-			"Email",
-			"getUpdated",
-			"getCreated",
-			"this",
-			"config",
-			"condif",
-			"confi",
-			"';"
+			"Email"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1279,15 +1279,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2828,
+						"buffer_size": 5307,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								857,
-								857
+								833,
+								833
 							]
 						],
 						"settings":
@@ -1395,12 +1395,16 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"rulers":
+							[
+								80
+							],
 							"sublime_auto_complete": true,
 							"syntax": "Packages/C++/C++.tmLanguage",
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 153.0,
+						"translation.y": 229.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

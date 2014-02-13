@@ -27,19 +27,171 @@
 
 #define MENU_WIDTH 40
 
+#define NO_ENDER 0
+#define WITH_ENDER 1
+
+/**
+ * Sai do programa
+ */
+void programExit() {
+    printf("Saindo... \n");
+    exit(0);
+}
+
+/**
+ * Pega um caractere da stdin e limpa o resto
+ * @return retultado de validateCharOption
+ */
+char getCharWipeInputStream() {
+    char c = ' ';
+
+    c = fgetc(stdin);
+    __fpurge(stdin);
+
+    return c;
+}
+
+/**
+ * Para o programa, para eperar por um enter
+ */
+void stopProgramForEnter() {
+    puts("\nPressione enter para continuar...");
+    getCharWipeInputStream();
+}
+
+/**
+ * Imprime o campo com o número
+ * @param val   Valor a ser impresso
+ * @param ender Se é final de linha ou não
+ */
+void printField(int *val, int ender) {
+    printf("| %d ", *val);
+    if(ender)
+        puts("|");
+}
+
 /**
  * Imprime uma linha de divisão
  * @param width  a largura da linha,
+ * @param ender  se tem o finalizador,
  */
-void printLine(int width) {
+void printLine(int width, int ender) {
     int i;
     putchar('+');
     for(i = 1; i < (width -1); i++) {
         putchar('-');
     }
-    putchar('+');
+    if(ender) {
+        putchar('+');
+        putchar('\n');
+    }
+}
+
+/**
+ * Verifica recursivamente a largura necessária para o campo
+ * @param width a largura
+ * @param value o valor
+ */
+void verifyIntegerWidth(int *width, int *value) {
+    if((*value) < 0) {
+        (*value) *= -1;
+        verifyIntegerWidth(width, value);
+    } else if((*value) > 10) {
+        (*width)++;
+        (*value) /= 10;
+        verifyIntegerWidth(width, value);
+    } else
+        (*width)++;
+}
+
+/**
+ * Imprime a a linha de separação vertical da tabela
+ * @param v     valor para a verificação da largura necessária
+ * @param ender se é final da linha ou não
+ */
+void printLineWithOffset(int *v, int ender) {
+    int width = 4, origValue = *v;
+
+    verifyIntegerWidth(&width, v);
+    printLine(width, ender);
+    *v = origValue;
+}
+
+/**
+ * Imprime os índices em uma linhas
+ * @param v     valor da célula
+ * @param i     índice
+ * @param ender se é o final do vetor
+ */
+void printIndexLine(int *v, int *i, int ender) {
+    int j, width = 4, origValue = *v, indexWidth = 3;
+
+    verifyIntegerWidth(&width, v);
+    *v = origValue;
+
+    origValue = *i;
+    verifyIntegerWidth(&indexWidth, i);
+    *i = origValue;
+
+    putchar('|');
+    putchar(' ');
+    printf("%d", *i);
+    for (j = 0; j < (width - indexWidth); j++)
+        putchar(' ');
+
+    if(ender)
+        puts("|");
+}
+
+/**
+ * Imprime o vetor horizontalmente na tela
+ * @param vetor ponteiro para o vetor-destino
+ */
+void printArray(int *vetor) {
+    int i, we = NO_ENDER;
+
+    putchar('\n');
+    for(i = 0; i < TAM; i++) {
+        if((i + 1) == TAM)
+            we = WITH_ENDER;
+        printLineWithOffset(vetor + i, we);
+    }
+
+    we = NO_ENDER;
+
+    for(i = 0; i < TAM; i++) {
+        if((i + 1) == TAM)
+            we = WITH_ENDER;
+        printIndexLine(vetor + i, &i, we);
+    }
+
+
+    we = NO_ENDER;
+
+    for(i = 0; i < TAM; i++) {
+        if((i + 1) == TAM)
+            we = WITH_ENDER;
+        printLineWithOffset(vetor + i, we);
+    }
+
+    we = NO_ENDER;
+
+    for(i = 0; i < TAM; i++) {
+        if((i + 1) == TAM)
+            we = WITH_ENDER;
+        printField(vetor + i, we);
+    }
+
+    we = NO_ENDER;
+
+    for(i = 0; i < TAM; i++) {
+        if((i + 1) == TAM)
+            we = WITH_ENDER;
+        printLineWithOffset(vetor + i, we);
+    }
     putchar('\n');
 }
+
 
 /**
  * Retorna o valor inputado, se válido. Se não, retorna 0 e força a voltar uma
@@ -68,36 +220,15 @@ int getNum(int *i) {
 }
 
 /**
- * Pega um caractere da stdin e limpa o resto
- * @return retultado de validateCharOption
- */
-char getCharWipeInputStream() {
-    char c = ' ';
-
-    c = fgetc(stdin);
-    __fpurge(stdin);
-
-    return c;
-}
-
-/**
- * Para o programa, para eperar por um enter
- */
-void stopProgramForEnter() {
-    puts("\nPressione enter para continuar...");
-    getCharWipeInputStream();
-}
-
-/**
  * Realiza o input no vetor repositório
  * @param  vetor vetor destinatário dos dados
  * @return       se foi válido a entrada de dados
  */
 int dataInput(int *vetor) {
     putchar('\n');
-    printLine(MENU_WIDTH);
+    printLine(MENU_WIDTH, WITH_ENDER);
     printf("| %-36s |\n", "Digite os números para popular o vetor");
-    printLine(MENU_WIDTH);
+    printLine(MENU_WIDTH, WITH_ENDER);
     putchar('\n');
 
     int i;
@@ -107,13 +238,14 @@ int dataInput(int *vetor) {
 
     putchar('\n');
     stopProgramForEnter();
+    return 1;
 }
 
 /**
  * Imprime o menu
  */
 void printMenu() {
-    printLine(MENU_WIDTH);
+    printLine(MENU_WIDTH, WITH_ENDER);
     printf("| %-36s |\n", "[E] Entrada dos dados");
     printf("| %-36s |\n", "[D] Listagem direta");
     printf("| %-36s |\n", "[I] Listagem inversa");
@@ -123,7 +255,7 @@ void printMenu() {
     printf("| %-31s |\n", "\tdeterminado elemento");
     printf("| %-37s |\n", "[A] Média dos elementos do vetor");
     printf("| %-36s |\n", "[S] Sair do programa");
-    printLine(MENU_WIDTH);
+    printLine(MENU_WIDTH, WITH_ENDER);
 }
 
 /**
@@ -156,18 +288,10 @@ char getOption() {
  */
 void header() {
     system("clear");
-    printLine(SCR_WIDTH);
+    printLine(SCR_WIDTH, WITH_ENDER);
     printf("| %-77s |\n", "12-02-2014, Revisão sobre vetores");
-    printLine(SCR_WIDTH);
+    printLine(SCR_WIDTH, WITH_ENDER);
     putchar('\n');
-}
-
-/**
- * Sai do programa
- */
-void programExit() {
-    printf("Saindo... \n");
-    exit(0);
 }
 
 /**
@@ -190,6 +314,12 @@ void run(int *vetor) {
 
             // Listagem direta
             case 'D':
+                if(hadInput)
+                    printArray(vetor);
+                else
+                    puts("\nNão houve entrada de dados. Insira-os e tente novamente\n");
+                stopProgramForEnter();
+                break;
 
             // Listagem Inversa
             case 'I':
