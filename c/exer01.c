@@ -34,6 +34,21 @@
 #define SEARCH_LOWER 0
 
 /**
+ * Calcula a média entre os elementos do array
+ */
+void calulateMedian(int *vetor) {
+    float res = 0;
+    int i;
+
+    for (i = 0; i < TAM; ++i)
+        res += (*(vetor + i));
+
+    res /= (float) TAM;
+
+    printf("A média entre os elementos do vetor é de: %.2f\n\n", res);
+}
+
+/**
  * Pega um caractere da stdin e limpa o resto
  * @return retultado de validateCharOption
  */
@@ -489,6 +504,12 @@ void run(int *vetor) {
 
             // Média entre os elementos do vetor
             case 'A':
+                if(hadInput)
+                    calulateMedian(vetor);
+                else
+                    puts("\nNão houve entrada de dados. Insira-os e tente novamente\n");
+                stopProgramForEnter();
+                break;
 
             // Sai do programa
             case 'S':
